@@ -1,316 +1,34 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red70\green137\blue204;\red23\green24\blue24;\red140\green211\blue254;
-\red202\green202\blue202;\red109\green109\blue109;\red194\green126\blue101;\red109\green115\blue120;\red212\green212\blue212;
-\red113\green192\blue131;\red167\green197\blue152;\red183\green111\blue247;\red54\green192\blue160;\red246\green124\blue48;
-}
-{\*\expandedcolortbl;;\cssrgb\c33725\c61176\c83922;\cssrgb\c11765\c12157\c12549;\cssrgb\c61176\c86275\c99608;
-\cssrgb\c83137\c83137\c83137;\cssrgb\c50196\c50196\c50196;\cssrgb\c80784\c56863\c47059;\cssrgb\c50196\c52549\c54510;\cssrgb\c86275\c86275\c86275;
-\cssrgb\c50588\c78824\c58431;\cssrgb\c70980\c80784\c65882;\cssrgb\c77255\c54118\c97647;\cssrgb\c23922\c78824\c69020;\cssrgb\c98039\c56471\c24314;
-}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Website</title>
+    <!-- Load Tailwind CSS from a CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-lg text-center max-w-md w-full">
+        <!-- Main heading for the page -->
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Hello World!</h1>
 
-\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 <!DOCTYPE\cf4 \strokec4  html\cf2 \strokec2 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf6 \cb3 \strokec6 <\cf2 \strokec2 html\cf5 \strokec5  \cf4 \strokec4 lang\cf6 \strokec6 =\cf7 \strokec7 "en"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cf6 \cb3 \strokec6 <\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 charset\cf6 \strokec6 =\cf7 \strokec7 "UTF-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 name\cf6 \strokec6 =\cf7 \strokec7 "viewport"\cf5 \strokec5  \cf4 \strokec4 content\cf6 \strokec6 =\cf7 \strokec7 "width=device-width, initial-scale=1.0"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \strokec5 NSW Legal Dispute Tracker\cf6 \strokec6 </\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf8 \strokec8 <!-- Tailwind CSS CDN -->\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf5 \strokec5  \cf4 \strokec4 src\cf6 \strokec6 =\cf7 \strokec7 "https://cdn.tailwindcss.com"\cf6 \strokec6 ></\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "preconnect"\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://fonts.googleapis.com"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "preconnect"\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://fonts.gstatic.com"\cf5 \strokec5  \cf4 \strokec4 crossorigin\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 link\cf5 \strokec5  \cf4 \strokec4 href\cf6 \strokec6 =\cf7 \strokec7 "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"\cf5 \strokec5  \cf4 \strokec4 rel\cf6 \strokec6 =\cf7 \strokec7 "stylesheet"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 body\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 font-family:\cf5 \strokec5  \cf10 \strokec10 'Inter'\cf9 \strokec9 ,\cf5 \strokec5  \cf7 \strokec7 sans-serif\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf2 \strokec2 .file-list-item\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 display:\cf5 \strokec5  \cf7 \strokec7 flex\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 align-items:\cf5 \strokec5  \cf7 \strokec7 center\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 justify-content:\cf5 \strokec5  \cf7 \strokec7 space-between\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 background-color:\cf5 \strokec5  #f3f4f6\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 border-radius:\cf5 \strokec5  \cf11 \strokec11 0.5rem\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 padding:\cf5 \strokec5  \cf11 \strokec11 0.5rem\cf5 \strokec5  \cf11 \strokec11 1rem\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf4 \strokec4 margin-bottom:\cf5 \strokec5  \cf11 \strokec11 0.5rem\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf6 \cb3 \strokec6 </\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cf6 \cb3 \strokec6 <\cf2 \strokec2 body\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-gray-100 flex items-center justify-center min-h-screen p-4"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3     \cf8 \strokec8 <!-- Main Container -->\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white rounded-lg shadow-xl p-8 max-w-4xl w-full"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 h1\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-3xl font-bold text-gray-800 mb-2 text-center"\cf6 \strokec6 >\cf5 \strokec5 NSW Legal Dispute Tracker\cf6 \strokec6 </\cf2 \strokec2 h1\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-500 mb-8 text-center"\cf6 \strokec6 >\cf5 \strokec5 Document all incidents for your legal case with your neighbour.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cb1 \
-\cb3         \cf8 \strokec8 <!-- Incident Input Form -->\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "space-y-6"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 h2\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-xl font-semibold text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Log a New Incident\cf6 \strokec6 </\cf2 \strokec2 h2\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cb1 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 label\cf5 \strokec5  \cf4 \strokec4 for\cf6 \strokec6 =\cf7 \strokec7 "incidentType"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block text-sm font-medium text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Incident Type\cf6 \strokec6 </\cf2 \strokec2 label\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 select\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "incidentType"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 option\cf5 \strokec5  \cf4 \strokec4 value\cf6 \strokec6 =\cf7 \strokec7 "harassment"\cf6 \strokec6 >\cf5 \strokec5 Harassment\cf6 \strokec6 </\cf2 \strokec2 option\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 option\cf5 \strokec5  \cf4 \strokec4 value\cf6 \strokec6 =\cf7 \strokec7 "trespassing"\cf6 \strokec6 >\cf5 \strokec5 Trespassing\cf6 \strokec6 </\cf2 \strokec2 option\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 option\cf5 \strokec5  \cf4 \strokec4 value\cf6 \strokec6 =\cf7 \strokec7 "tree-damage"\cf6 \strokec6 >\cf5 \strokec5 Tree Damage\cf6 \strokec6 </\cf2 \strokec2 option\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 option\cf5 \strokec5  \cf4 \strokec4 value\cf6 \strokec6 =\cf7 \strokec7 "other"\cf6 \strokec6 >\cf5 \strokec5 Other\cf6 \strokec6 </\cf2 \strokec2 option\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 select\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 label\cf5 \strokec5  \cf4 \strokec4 for\cf6 \strokec6 =\cf7 \strokec7 "incidentDate"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block text-sm font-medium text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Date of Incident\cf6 \strokec6 </\cf2 \strokec2 label\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 input\cf5 \strokec5  \cf4 \strokec4 type\cf6 \strokec6 =\cf7 \strokec7 "date"\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "incidentDate"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 label\cf5 \strokec5  \cf4 \strokec4 for\cf6 \strokec6 =\cf7 \strokec7 "incidentTime"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block text-sm font-medium text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Time of Incident\cf6 \strokec6 </\cf2 \strokec2 label\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 input\cf5 \strokec5  \cf4 \strokec4 type\cf6 \strokec6 =\cf7 \strokec7 "time"\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "incidentTime"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 label\cf5 \strokec5  \cf4 \strokec4 for\cf6 \strokec6 =\cf7 \strokec7 "incidentDescription"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block text-sm font-medium text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Description\cf6 \strokec6 </\cf2 \strokec2 label\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 textarea\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "incidentDescription"\cf5 \strokec5  \cf4 \strokec4 rows\cf6 \strokec6 =\cf7 \strokec7 "4"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"\cf5 \strokec5  \cf4 \strokec4 placeholder\cf6 \strokec6 =\cf7 \strokec7 "e.g., Neighbour yelled at me from their driveway."\cf6 \strokec6 ></\cf2 \strokec2 textarea\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 label\cf5 \strokec5  \cf4 \strokec4 for\cf6 \strokec6 =\cf7 \strokec7 "witnesses"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block text-sm font-medium text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Witnesses (if any)\cf6 \strokec6 </\cf2 \strokec2 label\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 input\cf5 \strokec5  \cf4 \strokec4 type\cf6 \strokec6 =\cf7 \strokec7 "text"\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "witnesses"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"\cf5 \strokec5  \cf4 \strokec4 placeholder\cf6 \strokec6 =\cf7 \strokec7 "e.g., John Smith, Jane Doe"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 label\cf5 \strokec5  \cf4 \strokec4 for\cf6 \strokec6 =\cf7 \strokec7 "documentation"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "block text-sm font-medium text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Attach Documentation (photos, files, etc.)\cf6 \strokec6 </\cf2 \strokec2 label\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 input\cf5 \strokec5  \cf4 \strokec4 type\cf6 \strokec6 =\cf7 \strokec7 "file"\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "documentation"\cf5 \strokec5  \cf4 \strokec4 multiple\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "fileList"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-2 text-sm text-gray-500"\cf6 \strokec6 ></\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 button\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "logIncident()"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 Log Incident\cb1 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 button\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 hr\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "my-8 border-gray-300"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 <!-- Logged Incidents Display -->\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "space-y-6"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 h2\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-xl font-semibold text-gray-700"\cf6 \strokec6 >\cf5 \strokec5 Incident Log\cf6 \strokec6 </\cf2 \strokec2 h2\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "incidentLog"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "space-y-4"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "noIncidentsMessage"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-500 text-center"\cf6 \strokec6 >\cf5 \strokec5 No incidents logged yet.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 button\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "clearLog()"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 Clear All Incidents\cb1 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 button\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3     \cf8 \strokec8 <!-- Modal for displaying message -->\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "messageModal"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-3 text-center"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 h3\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "modalTitle"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-lg leading-6 font-medium text-gray-900"\cf6 \strokec6 ></\cf2 \strokec2 h3\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "mt-2 px-7 py-3"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "modalMessage"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-sm text-gray-500"\cf6 \strokec6 ></\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "items-center px-4 py-3"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                     \cf6 \strokec6 <\cf2 \strokec2 button\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "okBtn"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "px-4 py-2 bg-indigo-600 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                         OK\cb1 \
-\cb3                     \cf6 \strokec6 </\cf2 \strokec2 button\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cb3         \cf8 \strokec8 // Array to hold incident data\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 let\cf5 \strokec5  incidents \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 [];\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 // DOM elements\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  incidentTypeEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'incidentType'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  incidentDateEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'incidentDate'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  incidentTimeEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'incidentTime'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  incidentDescriptionEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'incidentDescription'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  witnessesEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'witnesses'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  documentationEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'documentation'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  incidentLogEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'incidentLog'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  noIncidentsMessageEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'noIncidentsMessage'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  messageModal \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'messageModal'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  modalTitle \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'modalTitle'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  modalMessage \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'modalMessage'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 const\cf5 \strokec5  okBtn \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'okBtn'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 // Event listener for OK button on modal\cf5 \cb1 \strokec5 \
-\cb3         okBtn\cf9 \strokec9 .\cf5 \strokec5 onclick \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             messageModal\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 add\cf9 \strokec9 (\cf10 \strokec10 'hidden'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \};\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 // Function to show the custom modal\cf5 \cb1 \strokec5 \
-\cb3         \cf12 \strokec12 function\cf5 \strokec5  showModal\cf9 \strokec9 (\cf5 \strokec5 title\cf9 \strokec9 ,\cf5 \strokec5  message\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             modalTitle\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  title\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             modalMessage\cf9 \strokec9 .\cf5 \strokec5 textContent \cf9 \strokec9 =\cf5 \strokec5  message\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             messageModal\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 remove\cf9 \strokec9 (\cf10 \strokec10 'hidden'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf8 \cb3 \strokec8          * Converts a File object to a base64 data URL.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          * @param \{File\} file The file to convert.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          * @returns \{Promise<string>\} A promise that resolves with the base64 string.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3         \cf12 \strokec12 function\cf5 \strokec5  fileToBase64\cf9 \strokec9 (\cf5 \strokec5 file\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 return\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf13 \strokec13 Promise\cf9 \strokec9 ((\cf5 \strokec5 resolve\cf9 \strokec9 ,\cf5 \strokec5  reject\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 const\cf5 \strokec5  reader \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf13 \strokec13 FileReader\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3                 reader\cf9 \strokec9 .\cf5 \strokec5 readAsDataURL\cf9 \strokec9 (\cf5 \strokec5 file\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 reader\cf9 \strokec9 .\cf5 \strokec5 onload \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  resolve\cf9 \strokec9 (\cf5 \strokec5 reader\cf9 \strokec9 .\cf5 \strokec5 result\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 reader\cf9 \strokec9 .\cf5 \strokec5 onerror \cf9 \strokec9 =\cf5 \strokec5  error \cf9 \strokec9 =>\cf5 \strokec5  reject\cf9 \strokec9 (\cf5 \strokec5 error\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf8 \cb3 \strokec8          * Logs a new incident from the form inputs.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          * It validates the required fields and then adds the incident to the log.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3         \cf12 \strokec12 async\cf5 \strokec5  \cf12 \strokec12 function\cf5 \strokec5  logIncident\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  type \cf9 \strokec9 =\cf5 \strokec5  incidentTypeEl\cf9 \strokec9 .\cf5 \strokec5 value\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  date \cf9 \strokec9 =\cf5 \strokec5  incidentDateEl\cf9 \strokec9 .\cf5 \strokec5 value\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  time \cf9 \strokec9 =\cf5 \strokec5  incidentTimeEl\cf9 \strokec9 .\cf5 \strokec5 value\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  description \cf9 \strokec9 =\cf5 \strokec5  incidentDescriptionEl\cf9 \strokec9 .\cf5 \strokec5 value\cf9 \strokec9 .\cf5 \strokec5 trim\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  witnesses \cf9 \strokec9 =\cf5 \strokec5  witnessesEl\cf9 \strokec9 .\cf5 \strokec5 value\cf9 \strokec9 .\cf5 \strokec5 trim\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  files \cf9 \strokec9 =\cf5 \strokec5  documentationEl\cf9 \strokec9 .\cf5 \strokec5 files\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (!\cf5 \strokec5 date \cf9 \strokec9 ||\cf5 \strokec5  \cf9 \strokec9 !\cf5 \strokec5 description\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 showModal\cf9 \strokec9 (\cf10 \strokec10 "Validation Error"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Please enter a date and a description for the incident."\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 return\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf12 \strokec12 const\cf5 \strokec5  incident \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 id\cf9 \strokec9 :\cf5 \strokec5  \cf13 \strokec13 Date\cf9 \strokec9 .\cf5 \strokec5 now\cf9 \strokec9 (),\cf5 \cb1 \strokec5 \
-\cb3                 type\cf9 \strokec9 :\cf5 \strokec5  type\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
-\cb3                 date\cf9 \strokec9 :\cf5 \strokec5  date\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
-\cb3                 time\cf9 \strokec9 :\cf5 \strokec5  time\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
-\cb3                 description\cf9 \strokec9 :\cf5 \strokec5  description\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
-\cb3                 witnesses\cf9 \strokec9 :\cf5 \strokec5  witnesses\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
-\cb3                 documentation\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 []\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \};\cf5 \cb1 \strokec5 \
-\
-\cb3             \cf8 \strokec8 // Process and convert files to base64\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 for\cf5 \strokec5  \cf9 \strokec9 (\cf12 \strokec12 const\cf5 \strokec5  file \cf12 \strokec12 of\cf5 \strokec5  files\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 \cf12 \strokec12 try\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                     \cf12 \strokec12 const\cf5 \strokec5  base64Data \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 await\cf5 \strokec5  fileToBase64\cf9 \strokec9 (\cf5 \strokec5 file\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     incident\cf9 \strokec9 .\cf5 \strokec5 documentation\cf9 \strokec9 .\cf5 \strokec5 push\cf9 \strokec9 (\{\cf5 \cb1 \strokec5 \
-\cb3                         name\cf9 \strokec9 :\cf5 \strokec5  file\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
-\cb3                         data\cf9 \strokec9 :\cf5 \strokec5  base64Data\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
-\cb3                         type\cf9 \strokec9 :\cf5 \strokec5  file\cf9 \strokec9 .\cf5 \strokec5 type\cb1 \
-\cb3                     \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 catch\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 error\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                     console\cf9 \strokec9 .\cf5 \strokec5 error\cf9 \strokec9 (\cf10 \strokec10 'Error converting file to base64:'\cf9 \strokec9 ,\cf5 \strokec5  error\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     showModal\cf9 \strokec9 (\cf10 \strokec10 "File Error"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Could not process one or more files. Please try again."\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     \cf12 \strokec12 return\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3             incidents\cf9 \strokec9 .\cf5 \strokec5 push\cf9 \strokec9 (\cf5 \strokec5 incident\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             renderLog\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3             clearForm\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf8 \cb3 \strokec8          * Renders the logged incidents to the UI.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3         \cf12 \strokec12 function\cf5 \strokec5  renderLog\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             \cf8 \strokec8 // Sort incidents by date in descending order\cf5 \cb1 \strokec5 \
-\cb3             incidents\cf9 \strokec9 .\cf5 \strokec5 sort\cf9 \strokec9 ((\cf5 \strokec5 a\cf9 \strokec9 ,\cf5 \strokec5  b\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf13 \strokec13 Date\cf9 \strokec9 (\cf5 \strokec5 b\cf9 \strokec9 .\cf5 \strokec5 date\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 -\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf13 \strokec13 Date\cf9 \strokec9 (\cf5 \strokec5 a\cf9 \strokec9 .\cf5 \strokec5 date\cf9 \strokec9 ));\cf5 \cb1 \strokec5 \
-\
-\cb3             incidentLogEl\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 incidents\cf9 \strokec9 .\cf5 \strokec5 length \cf9 \strokec9 ===\cf5 \strokec5  \cf14 \strokec14 0\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 noIncidentsMessageEl\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 remove\cf9 \strokec9 (\cf10 \strokec10 'hidden'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                 noIncidentsMessageEl\cf9 \strokec9 .\cf5 \strokec5 classList\cf9 \strokec9 .\cf5 \strokec5 add\cf9 \strokec9 (\cf10 \strokec10 'hidden'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 incidents\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 (\cf5 \strokec5 incident \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3                     \cf12 \strokec12 const\cf5 \strokec5  incidentEl \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 createElement\cf9 \strokec9 (\cf10 \strokec10 'div'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                     incidentEl\cf9 \strokec9 .\cf5 \strokec5 className \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'bg-gray-50 rounded-lg p-4 shadow-inner'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3                     incidentEl\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf10 \cb3 \strokec10                         <div class="flex justify-between items-center mb-2">\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                             <span class="text-sm font-semibold text-gray-800 capitalize">\cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 type\cf9 \strokec9 .\cf5 \strokec5 replace\cf9 \strokec9 (\cf10 \strokec10 '-'\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 ' '\cf9 \strokec9 )\}\cf10 \strokec10 </span>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                             <span class="text-sm text-gray-500">\cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 date\cf9 \strokec9 \}\cf10 \strokec10  at \cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 time \cf9 \strokec9 ||\cf5 \strokec5  \cf10 \strokec10 'N/A'\cf9 \strokec9 \}\cf10 \strokec10 </span>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                         </div>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                         <p class="text-gray-700 text-sm mb-2">\cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 description\cf9 \strokec9 \}\cf10 \strokec10 </p>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                         \cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 witnesses \cf9 \strokec9 ?\cf5 \strokec5  \cf10 \strokec10 `<p class="text-gray-600 text-xs mt-2"><strong>Witnesses:</strong> \cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 witnesses\cf9 \strokec9 \}\cf10 \strokec10 </p>`\cf5 \strokec5  \cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                         \cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 documentation\cf9 \strokec9 .\cf5 \strokec5 length \cf9 \strokec9 >\cf5 \strokec5  \cf14 \strokec14 0\cf5 \strokec5  \cf9 \strokec9 ?\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                             <div class="mt-4">\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                 <p class="text-xs font-medium text-gray-600 mb-1">Attached Files:</p>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                 <ul class="list-disc list-inside space-y-1">\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                     \cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 documentation\cf9 \strokec9 .\cf5 \strokec5 map\cf9 \strokec9 (\cf5 \strokec5 doc \cf9 \strokec9 =>\cf5 \strokec5  \cf10 \strokec10 `\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                         <li class="flex justify-between items-center text-xs text-gray-500">\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                             <span>\cf9 \strokec9 $\{\cf5 \strokec5 doc\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 </span>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                             <a href="\cf9 \strokec9 $\{\cf5 \strokec5 doc\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 \}\cf10 \strokec10 " download="\cf9 \strokec9 $\{\cf5 \strokec5 doc\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 " class="text-indigo-600 hover:text-indigo-800 ml-2">Download</a>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                         </li>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                     `\cf9 \strokec9 ).\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 ''\cf9 \strokec9 )\}\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                                 </ul>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                             </div>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                         `\cf5 \strokec5  \cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                         <button onclick="deleteIncident(\cf9 \strokec9 $\{\cf5 \strokec5 incident\cf9 \strokec9 .\cf5 \strokec5 id\cf9 \strokec9 \}\cf10 \strokec10 )" class="mt-4 text-xs font-semibold text-red-600 hover:text-red-800">Delete</button>\cf5 \cb1 \strokec5 \
-\cf10 \cb3 \strokec10                     `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3                     incidentLogEl\cf9 \strokec9 .\cf5 \strokec5 appendChild\cf9 \strokec9 (\cf5 \strokec5 incidentEl\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3                 \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
-\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf8 \cb3 \strokec8          * Clears the incident log form inputs.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3         \cf12 \strokec12 function\cf5 \strokec5  clearForm\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             incidentTypeEl\cf9 \strokec9 .\cf5 \strokec5 value \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'harassment'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             incidentDateEl\cf9 \strokec9 .\cf5 \strokec5 value \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             incidentTimeEl\cf9 \strokec9 .\cf5 \strokec5 value \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             incidentDescriptionEl\cf9 \strokec9 .\cf5 \strokec5 value \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             witnessesEl\cf9 \strokec9 .\cf5 \strokec5 value \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             documentationEl\cf9 \strokec9 .\cf5 \strokec5 value \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3             document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'fileList'\cf9 \strokec9 ).\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf8 \cb3 \strokec8          * Deletes an incident from the log by its ID.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          * @param \{number\} id The unique ID of the incident to delete.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3         \cf12 \strokec12 function\cf5 \strokec5  deleteIncident\cf9 \strokec9 (\cf5 \strokec5 id\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             incidents \cf9 \strokec9 =\cf5 \strokec5  incidents\cf9 \strokec9 .\cf5 \strokec5 filter\cf9 \strokec9 (\cf5 \strokec5 incident \cf9 \strokec9 =>\cf5 \strokec5  incident\cf9 \strokec9 .\cf5 \strokec5 id \cf9 \strokec9 !==\cf5 \strokec5  id\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3             renderLog\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf8 \cb3 \strokec8          * Clears all incidents from the log.\cf5 \cb1 \strokec5 \
-\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf5 \cb3         \cf12 \strokec12 function\cf5 \strokec5  clearLog\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
-\cb3             incidents \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 [];\cf5 \cb1 \strokec5 \
-\cb3             renderLog\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\cb3             showModal\cf9 \strokec9 (\cf10 \strokec10 "Log Cleared"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "All incidents have been successfully cleared."\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
-\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
-\
-\cb3         \cf8 \strokec8 // Initial render\cf5 \cb1 \strokec5 \
-\cb3         renderLog\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
-\
-\cb3     \cf6 \strokec6 </\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\pard\pardeftab720\partightenfactor0
-\cf6 \cb3 \strokec6 </\cf2 \strokec2 body\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\cf6 \cb3 \strokec6 </\cf2 \strokec2 html\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
-\
-}
+        <!-- A short description or welcome message -->
+        <p class="text-gray-600 mb-6">
+            This is your first live website. It's working perfectly!
+        </p>
+
+        <!-- A call-to-action button with simple styling -->
+        <button class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300">
+            Get Started
+        </button>
+    </div>
+</body>
+</html>
