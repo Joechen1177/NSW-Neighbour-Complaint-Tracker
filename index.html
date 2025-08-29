@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for the dark mode toggle switch */
+        /* Custom styles for the dark mode toggle switch and icons */
         body {
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s ease;
@@ -112,10 +112,21 @@
                 <input type="text" id="witnesses" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="e.g., John Smith, Jane Doe">
             </div>
 
-            <div>
-                <label for="documentation" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Attach Documentation (photos, files, etc.)</label>
-                <input type="file" id="documentation" multiple class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                <div id="filePreview" class="flex flex-wrap items-center mt-2 space-x-2"></div>
+            <div class="flex flex-col sm:flex-row sm:space-x-4">
+                <div class="flex-1 mb-4 sm:mb-0">
+                    <label for="documentation" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Attach Photos/Videos</label>
+                    <input type="file" id="documentation" multiple accept="image/*,video/*" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div id="filePreview" class="flex flex-wrap items-center mt-2 space-x-2"></div>
+                </div>
+
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Record a Voice Memo</label>
+                    <button id="recordButton" class="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 mt-1">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        Start Recording
+                    </button>
+                    <div id="audioPreview" class="mt-2 text-xs text-gray-500 dark:text-gray-400"></div>
+                </div>
             </div>
 
             <button onclick="logIncident()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -147,7 +158,7 @@
         </div>
         
         <!-- Version Number -->
-        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.3</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.4</p>
     </div>
 
     <!-- Modal for displaying message -->
@@ -170,7 +181,11 @@
     <script>
         // Array to hold incident data
         let incidents = [];
-
+        let mediaRecorder;
+        let recordedChunks = [];
+        let recordedAudioFile = null;
+        let recordingStatus = false;
+        
         // DOM elements
         const incidentTypeEl = document.getElementById('incidentType');
         const incidentDateEl = document.getElementById('incidentDate');
@@ -188,7 +203,9 @@
         const okBtn = document.getElementById('okBtn');
         const darkModeToggle = document.getElementById('darkModeToggle');
         const downloadInstructionsEl = document.getElementById('downloadInstructions');
-        
+        const recordButton = document.getElementById('recordButton');
+        const audioPreviewEl = document.getElementById('audioPreview');
+
         // Event listener for OK button on modal
         okBtn.onclick = () => {
             messageModal.classList.add('hidden');
@@ -222,9 +239,14 @@
                         filePreviewEl.appendChild(img);
                     };
                     reader.readAsDataURL(file);
+                } else if (file.type.startsWith('video/')) {
+                    const span = document.createElement('span');
+                    span.textContent = `📹 ${file.name}`;
+                    span.className = 'text-xs text-gray-500 dark:text-gray-400 p-1 rounded-md bg-gray-200 dark:bg-gray-600';
+                    filePreviewEl.appendChild(span);
                 } else {
                     const span = document.createElement('span');
-                    span.textContent = file.name;
+                    span.textContent = `📁 ${file.name}`;
                     span.className = 'text-xs text-gray-500 dark:text-gray-400 p-1 rounded-md bg-gray-200 dark:bg-gray-600';
                     filePreviewEl.appendChild(span);
                 }
@@ -239,6 +261,65 @@
         }
 
         /**
+         * Toggles the audio recording on and off.
+         */
+        async function toggleRecording() {
+            if (recordingStatus) {
+                // Stop recording
+                mediaRecorder.stop();
+                recordingStatus = false;
+                recordButton.textContent = "Start Recording";
+                recordButton.classList.replace('bg-red-600', 'bg-pink-600');
+            } else {
+                // Start recording
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    recordedChunks = [];
+                    recordedAudioFile = null;
+
+                    mediaRecorder.ondataavailable = (event) => {
+                        recordedChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+                        recordedAudioFile = new File([audioBlob], `voice_memo_${Date.now()}.webm`, { type: 'audio/webm' });
+                        showAudioPreview(recordedAudioFile);
+                    };
+
+                    mediaRecorder.start();
+                    recordingStatus = true;
+                    recordButton.textContent = "Stop Recording";
+                    recordButton.classList.replace('bg-pink-600', 'bg-red-600');
+                    audioPreviewEl.innerHTML = `<span class="text-pink-600">Recording...</span>`;
+
+                } catch (err) {
+                    showModal("Permission Error", "Could not access the microphone. Please grant permission.");
+                    console.error('Error accessing microphone:', err);
+                }
+            }
+        }
+        
+        // Add click listener for record button
+        recordButton.addEventListener('click', toggleRecording);
+
+        /**
+         * Displays a preview for the recorded audio file.
+         * @param {File} audioFile The recorded audio file.
+         */
+        function showAudioPreview(audioFile) {
+            const audioUrl = URL.createObjectURL(audioFile);
+            audioPreviewEl.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs text-gray-500 dark:text-gray-400">🎤 ${audioFile.name}</span>
+                    <audio controls src="${audioUrl}" class="h-6"></audio>
+                </div>
+            `;
+        }
+
+
+        /**
          * Logs a new incident from the form inputs.
          * It validates the required fields and then adds the incident to the log.
          */
@@ -248,8 +329,12 @@
             const time = incidentTimeEl.value;
             const description = incidentDescriptionEl.value.trim();
             const witnesses = witnessesEl.value.trim();
-            const files = documentationEl.files;
-
+            
+            const fileList = Array.from(documentationEl.files);
+            if (recordedAudioFile) {
+                fileList.push(recordedAudioFile);
+            }
+            
             if (!date || !description) {
                 showModal("Validation Error", "Please enter a date and a description for the incident.");
                 return;
@@ -266,7 +351,7 @@
             };
 
             // Store only the filenames to keep the log small
-            for (const file of files) {
+            for (const file of fileList) {
                 incident.documentation.push({
                     name: file.name,
                     note: "File attached. Please save the original file separately."
@@ -335,6 +420,8 @@
             witnessesEl.value = '';
             documentationEl.value = '';
             filePreviewEl.innerHTML = '';
+            audioPreviewEl.innerHTML = '';
+            recordedAudioFile = null;
         }
 
         /**
