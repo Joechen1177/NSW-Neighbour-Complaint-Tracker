@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incident Tracker</title>
+    <!-- Simple Clipboard Logo for Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,6 +63,10 @@
             border-radius: 0.25rem;
             margin-right: 0.5rem;
         }
+        /* Fix for date and time fields to left-align */
+        .form-group label {
+            text-align: left;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen p-4 sm:p-8">
@@ -84,7 +91,7 @@
             <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Log a New Incident</h2>
             
             <div>
-                <label for="incidentType" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Incident Type</label>
+                <label for="incidentType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Incident Type</label>
                 <select id="incidentType" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
                     <option value="harassment">Harassment</option>
                     <option value="trespassing">Trespassing</option>
@@ -93,40 +100,46 @@
                 </select>
             </div>
 
-            <div>
-                <label for="incidentDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Date of Incident</label>
+            <div class="form-group">
+                <label for="incidentDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Date of Incident</label>
                 <input type="date" id="incidentDate" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
             </div>
 
-            <div>
-                <label for="incidentTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Time of Incident</label>
+            <div class="form-group">
+                <label for="incidentTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Time of Incident</label>
                 <input type="time" id="incidentTime" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
             </div>
 
             <div>
-                <label for="incidentDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                <label for="incidentDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Description</label>
                 <textarea id="incidentDescription" rows="4" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="e.g., Neighbour yelled at me from their driveway."></textarea>
             </div>
 
             <div>
-                <label for="witnesses" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Witnesses (if any)</label>
+                <label for="witnesses" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Witnesses (if any)</label>
                 <input type="text" id="witnesses" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="e.g., John Smith, Jane Doe">
             </div>
 
             <div class="flex flex-col sm:flex-row sm:space-x-4">
                 <div class="flex-1 mb-4 sm:mb-0">
-                    <label for="documentation" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Attach Photos/Videos</label>
+                    <label for="documentation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Attach Photos/Videos</label>
                     <input type="file" id="documentation" multiple accept="image/*,video/*" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     <div id="filePreview" class="flex flex-wrap items-center mt-2 space-x-2"></div>
                 </div>
 
                 <div class="flex-1">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Record a Voice Memo</label>
-                    <button id="recordButton" class="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 mt-1">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        Start Recording
-                    </button>
-                    <div id="audioPreview" class="mt-2 text-xs text-gray-500 dark:text-gray-400"></div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Record a Memo</label>
+                    <div class="flex space-x-2 mt-1">
+                        <button id="recordAudioButton" class="flex-1 flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                            Audio
+                        </button>
+                        <button id="recordVideoButton" class="flex-1 flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            Video
+                        </button>
+                    </div>
+                    <div id="mediaPreview" class="mt-2 text-xs text-gray-500 dark:text-gray-400"></div>
                 </div>
             </div>
 
@@ -154,12 +167,12 @@
             <div id="downloadInstructions" class="mt-8 p-4 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-200 hidden">
                 <p class="font-bold mb-2">Instructions for your Log:</p>
                 <p>You have successfully downloaded a **.json** file. This is a text-based file that contains all your logged incident data. To view it, you can open it with any text editor (like Notepad, TextEdit, or VS Code).</p>
-                <p class="mt-2">Your voice memos are now **embedded** in the log file, which will increase its size. For other photos and files, you will need to save them separately on your computer.</p>
+                <p class="mt-2">Your audio and video memos are now **embedded** in the log file, which will significantly increase its size. For other photos and files, you will need to save them separately on your computer.</p>
             </div>
         </div>
         
         <!-- Version Number -->
-        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.6</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.7</p>
     </div>
 
     <!-- Modal for displaying message -->
@@ -184,7 +197,7 @@
         let incidents = [];
         let mediaRecorder;
         let recordedChunks = [];
-        let recordedAudioFile = null;
+        let recordedMediaFile = null;
         let recordingStatus = false;
         
         // DOM elements
@@ -204,8 +217,9 @@
         const okBtn = document.getElementById('okBtn');
         const darkModeToggle = document.getElementById('darkModeToggle');
         const downloadInstructionsEl = document.getElementById('downloadInstructions');
-        const recordButton = document.getElementById('recordButton');
-        const audioPreviewEl = document.getElementById('audioPreview');
+        const recordAudioButton = document.getElementById('recordAudioButton');
+        const recordVideoButton = document.getElementById('recordVideoButton');
+        const mediaPreviewEl = document.getElementById('mediaPreview');
 
         // Event listener for OK button on modal
         okBtn.onclick = () => {
@@ -262,61 +276,168 @@
         }
 
         /**
-         * Toggles the audio recording on and off.
+         * Converts an audio blob to WAV format.
+         * @param {Blob} audioBlob The audio blob to convert.
+         * @returns {Promise<Blob>} A promise that resolves with the WAV blob.
          */
-        async function toggleRecording() {
+        async function convertAudioToWav(audioBlob) {
+            const arrayBuffer = await audioBlob.arrayBuffer();
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            // Create a simple WAV file header
+            const numChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            const format = 1; // PCM
+            const bitDepth = 16;
+            const dataLength = audioBuffer.length * numChannels * (bitDepth / 8);
+
+            const buffer = new ArrayBuffer(44 + dataLength);
+            const view = new DataView(buffer);
+            let offset = 0;
+
+            function writeString(str) {
+                for (let i = 0; i < str.length; i++) {
+                    view.setUint8(offset++, str.charCodeAt(i));
+                }
+            }
+
+            // RIFF chunk descriptor
+            writeString('RIFF');
+            view.setUint32(offset, 36 + dataLength, true); offset += 4;
+            writeString('WAVE');
+            
+            // fmt chunk
+            writeString('fmt ');
+            view.setUint32(offset, 16, true); offset += 4;
+            view.setUint16(offset, format, true); offset += 2;
+            view.setUint16(offset, numChannels, true); offset += 2;
+            view.setUint32(offset, sampleRate, true); offset += 4;
+            view.setUint32(offset, sampleRate * numChannels * (bitDepth / 8), true); offset += 4;
+            view.setUint16(offset, numChannels * (bitDepth / 8), true); offset += 2;
+            view.setUint16(offset, bitDepth, true); offset += 2;
+
+            // data chunk
+            writeString('data');
+            view.setUint32(offset, dataLength, true); offset += 4;
+            
+            // Write PCM data
+            const channels = [];
+            for (let i = 0; i < numChannels; i++) {
+                channels.push(audioBuffer.getChannelData(i));
+            }
+
+            for (let i = 0; i < audioBuffer.length; i++) {
+                for (let j = 0; j < numChannels; j++) {
+                    const sample = Math.max(-1, Math.min(1, channels[j][i]));
+                    view.setInt16(offset, sample * (32767), true);
+                    offset += 2;
+                }
+            }
+
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+
+        /**
+         * Toggles media recording on and off.
+         * @param {string} type 'audio' or 'video'
+         */
+        async function toggleRecording(type) {
             if (recordingStatus) {
-                // Stop recording
                 mediaRecorder.stop();
                 recordingStatus = false;
-                recordButton.textContent = "Start Recording";
-                recordButton.classList.replace('bg-red-600', 'bg-pink-600');
+                recordAudioButton.classList.replace('bg-red-600', 'bg-pink-600');
+                recordVideoButton.classList.replace('bg-red-600', 'bg-teal-600');
+                recordAudioButton.textContent = "Audio";
+                recordVideoButton.textContent = "Video";
+                mediaPreviewEl.innerHTML = '';
             } else {
-                // Start recording
                 try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    mediaRecorder = new MediaRecorder(stream);
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        audio: true,
+                        video: (type === 'video') ? {
+                            facingMode: 'user', // Use front camera
+                            width: { ideal: 480 },
+                            height: { ideal: 360 }
+                        } : false
+                    });
+
+                    mediaRecorder = new MediaRecorder(stream, { mimeType: (type === 'video') ? 'video/webm;codecs=vp8,opus' : 'audio/webm' });
                     recordedChunks = [];
-                    recordedAudioFile = null;
+                    recordedMediaFile = null;
 
                     mediaRecorder.ondataavailable = (event) => {
                         recordedChunks.push(event.data);
                     };
 
                     mediaRecorder.onstop = () => {
-                        const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
-                        recordedAudioFile = new File([audioBlob], `voice_memo_${Date.now()}.webm`, { type: 'audio/webm' });
-                        showAudioPreview(recordedAudioFile);
+                        const mediaBlob = new Blob(recordedChunks, { type: mediaRecorder.mimeType });
+                        if (type === 'audio') {
+                            // Convert to WAV for better mobile compatibility
+                            convertAudioToWav(mediaBlob).then(wavBlob => {
+                                recordedMediaFile = new File([wavBlob], `voice_memo_${Date.now()}.wav`, { type: 'audio/wav' });
+                                showMediaPreview(recordedMediaFile);
+                            }).catch(err => {
+                                showModal("Conversion Error", "Failed to convert audio file.");
+                                console.error(err);
+                            });
+                        } else {
+                            recordedMediaFile = new File([mediaBlob], `video_memo_${Date.now()}.webm`, { type: mediaBlob.type });
+                            showMediaPreview(recordedMediaFile);
+                        }
+                        
+                        stream.getTracks().forEach(track => track.stop());
                     };
 
                     mediaRecorder.start();
                     recordingStatus = true;
-                    recordButton.textContent = "Stop Recording";
-                    recordButton.classList.replace('bg-pink-600', 'bg-red-600');
-                    audioPreviewEl.innerHTML = `<span class="text-pink-600">Recording...</span>`;
+                    if (type === 'audio') {
+                        recordAudioButton.classList.replace('bg-pink-600', 'bg-red-600');
+                        recordAudioButton.textContent = "Stop Audio";
+                        recordVideoButton.disabled = true;
+                    } else {
+                        recordVideoButton.classList.replace('bg-teal-600', 'bg-red-600');
+                        recordVideoButton.textContent = "Stop Video";
+                        recordAudioButton.disabled = true;
+                    }
+                    mediaPreviewEl.innerHTML = `<span class="text-red-600">Recording...</span>`;
+
+                    // Stop recording automatically after 30 seconds
+                    setTimeout(() => {
+                        if (recordingStatus) {
+                            toggleRecording(type);
+                            showModal("Recording Stopped", "Recording automatically stopped after 30 seconds.");
+                        }
+                    }, 30000);
 
                 } catch (err) {
-                    showModal("Permission Error", "Could not access the microphone. Please grant permission.");
-                    console.error('Error accessing microphone:', err);
+                    showModal("Permission Error", "Could not access the microphone or camera. Please grant permission.");
+                    console.error('Error accessing media devices:', err);
                 }
             }
         }
         
-        // Add click listener for record button
-        recordButton.addEventListener('click', toggleRecording);
+        recordAudioButton.addEventListener('click', () => toggleRecording('audio'));
+        recordVideoButton.addEventListener('click', () => toggleRecording('video'));
 
         /**
-         * Displays a preview for the recorded audio file.
-         * @param {File} audioFile The recorded audio file.
+         * Displays a preview for the recorded media file.
+         * @param {File} mediaFile The recorded media file.
          */
-        function showAudioPreview(audioFile) {
-            const audioUrl = URL.createObjectURL(audioFile);
-            audioPreviewEl.innerHTML = `
-                <div class="flex items-center space-x-2">
-                    <span class="text-xs text-gray-500 dark:text-gray-400">🎤 ${audioFile.name}</span>
-                    <audio controls src="${audioUrl}" class="h-6"></audio>
+        function showMediaPreview(mediaFile) {
+            const mediaUrl = URL.createObjectURL(mediaFile);
+            const mediaType = mediaFile.type.startsWith('audio') ? 'audio' : 'video';
+            mediaPreviewEl.innerHTML = `
+                <div class="flex flex-col items-start space-y-2">
+                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                        ${mediaType === 'audio' ? '🎤' : '📹'} ${mediaFile.name}
+                    </span>
+                    <${mediaType} controls src="${mediaUrl}" class="h-8 max-w-full"></${mediaType}>
                 </div>
             `;
+            if (recordAudioButton.disabled) recordAudioButton.disabled = false;
+            if (recordVideoButton.disabled) recordVideoButton.disabled = false;
         }
 
         /**
@@ -354,20 +475,21 @@
                 });
             }
             
-            // Handle recorded audio file
-            if (recordedAudioFile) {
+            // Handle recorded media file
+            if (recordedMediaFile) {
                 const reader = new FileReader();
-                reader.readAsDataURL(recordedAudioFile);
                 reader.onloadend = () => {
                     incident.documentation.push({
-                        name: recordedAudioFile.name,
-                        note: "Voice Memo",
-                        data: reader.result
+                        name: recordedMediaFile.name,
+                        note: recordedMediaFile.type.startsWith('audio') ? "Voice Memo" : "Video Memo",
+                        data: reader.result,
+                        type: recordedMediaFile.type
                     });
                     incidents.push(incident);
                     renderLog();
                     clearForm();
                 };
+                reader.readAsDataURL(recordedMediaFile);
             } else {
                 incidents.push(incident);
                 renderLog();
@@ -399,11 +521,12 @@
                     if (incident.documentation.length > 0) {
                         const docsHtml = incident.documentation.map(doc => {
                             if (doc.data) {
-                                // It's an embedded voice memo
+                                // It's an embedded audio or video memo
+                                const mediaTag = doc.type.startsWith('audio') ? 'audio' : 'video';
                                 return `
                                     <li class="flex items-center text-xs text-gray-500 dark:text-gray-400">
                                         <span class="flex-1">${doc.note}: ${doc.name}</span>
-                                        <audio controls src="${doc.data}" class="h-6 ml-2"></audio>
+                                        <${mediaTag} controls src="${doc.data}" class="h-6 ml-2"></${mediaTag}>
                                     </li>
                                 `;
                             } else {
@@ -447,14 +570,14 @@
          */
         function clearForm() {
             incidentTypeEl.value = 'harassment';
-            incidentDateEl.value = '';
-            incidentTimeEl.value = '';
             incidentDescriptionEl.value = '';
             witnessesEl.value = '';
             documentationEl.value = '';
             filePreviewEl.innerHTML = '';
-            audioPreviewEl.innerHTML = '';
-            recordedAudioFile = null;
+            mediaPreviewEl.innerHTML = '';
+            recordedMediaFile = null;
+            if (recordAudioButton.disabled) recordAudioButton.disabled = false;
+            if (recordVideoButton.disabled) recordVideoButton.disabled = false;
             // Pre-populate date and time after clearing
             setInitialDateTime();
         }
