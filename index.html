@@ -80,7 +80,7 @@
 
     <!-- Main Container -->
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 sm:p-8 max-w-4xl w-full relative">
-        <!-- Header with Dark Mode Toggle -->
+        <!-- Header with Dark Mode Toggle and Logout Button -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-8">
             <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-2 sm:mb-0 text-center sm:text-left">Incident Tracker</h1>
             <div class="flex items-center space-x-2 mt-4 sm:mt-0">
@@ -89,108 +89,135 @@
                     <input type="checkbox" id="darkModeToggle">
                     <span class="slider"></span>
                 </label>
+                <button id="logoutButton" class="hidden py-2 px-4 bg-gray-200 dark:bg-gray-700 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    Logout
+                </button>
             </div>
         </div>
         <p class="text-gray-500 dark:text-gray-400 mb-8 text-center sm:text-left">Document all incidents for your legal case with your neighbour.</p>
-        
-        <!-- Incident Input Form -->
-        <div class="space-y-6">
-            <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Log a New Incident</h2>
-            
+
+        <!-- Login Section -->
+        <div id="authSection" class="space-y-6">
+            <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Sign In or Create Account</h2>
             <div>
-                <label for="incidentType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Incident Type</label>
-                <select id="incidentType" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-                    <option value="harassment">Harassment</option>
-                    <option value="trespassing">Trespassing</option>
-                    <option value="tree-damage">Tree Damage</option>
-                    <option value="other">Other</option>
-                </select>
+                <label for="emailInput" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Email</label>
+                <input type="email" id="emailAuth" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="you@example.com">
             </div>
-
-            <div class="form-group">
-                <label for="incidentDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Date of Incident</label>
-                <input type="date" id="incidentDate" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-            </div>
-
-            <div class="form-group">
-                <label for="incidentTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Time of Incident</label>
-                <input type="time" id="incidentTime" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-            </div>
-
             <div>
-                <label for="incidentDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Description</label>
-                <textarea id="incidentDescription" rows="4" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="e.g., Neighbour yelled at me from their driveway."></textarea>
+                <label for="passwordInput" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Password</label>
+                <input type="password" id="passwordAuth" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="password">
             </div>
-
-            <div>
-                <label for="witnesses" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Witnesses (if any)</label>
-                <input type="text" id="witnesses" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="e.g., John Smith, Jane Doe">
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                <button id="signInButton" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign In
+                </button>
+                <button id="signUpButton" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white dark:bg-gray-800 border-indigo-600 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign Up
+                </button>
             </div>
-
-            <div class="flex flex-col sm:flex-row sm:space-x-4">
-                <div class="flex-1 mb-4 sm:mb-0">
-                    <label for="documentation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Attach Photos/Videos</label>
-                    <input type="file" id="documentation" multiple accept="image/*,video/*" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    <div id="filePreview" class="flex flex-wrap items-center mt-2 space-x-2"></div>
-                </div>
-
-                <div class="flex-1">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Record a Memo</label>
-                    <div class="flex space-x-2 mt-1">
-                        <button id="recordAudioButton" class="flex-1 flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                            Audio
-                        </button>
-                        <button id="recordVideoButton" class="flex-1 flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                            Video
-                        </button>
-                    </div>
-                    <!-- New video preview element for real-time and playback -->
-                    <video id="video-preview" autoplay playsinline class="w-full h-auto rounded-md mt-2"></video>
-                    <div id="mediaPreview" class="mt-2 text-xs text-gray-500 dark:text-gray-400"></div>
-                </div>
-            </div>
-
-            <button onclick="logIncident()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Log Incident
-            </button>
         </div>
 
-        <hr class="my-8 border-gray-300 dark:border-gray-600">
+        <!-- Main App Section (hidden by default) -->
+        <div id="mainAppSection" class="hidden">
+            <!-- Incident Input Form -->
+            <div class="space-y-6">
+                <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Log a New Incident</h2>
+                
+                <div>
+                    <label for="incidentType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Incident Type</label>
+                    <select id="incidentType" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                        <option value="harassment">Harassment</option>
+                        <option value="trespassing">Trespassing</option>
+                        <option value="tree-damage">Tree Damage</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
 
-        <!-- Logged Incidents Display -->
-        <div class="space-y-6">
-            <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Incident Log</h2>
-            <div id="incidentLog" class="space-y-4">
-                <p id="noIncidentsMessage" class="text-gray-500 dark:text-gray-400 text-center">No incidents logged yet.</p>
-            </div>
-            <div id="logButtons" class="mt-4 hidden space-y-2">
-                <button onclick="clearLog()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                    Clear All Incidents
+                <div class="form-group">
+                    <label for="incidentDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Date of Incident</label>
+                    <input type="date" id="incidentDate" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                </div>
+
+                <div class="form-group">
+                    <label for="incidentTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Time of Incident</label>
+                    <input type="time" id="incidentTime" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                </div>
+
+                <div>
+                    <label for="incidentDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Description</label>
+                    <textarea id="incidentDescription" rows="4" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="e.g., Neighbour yelled at me from their driveway."></textarea>
+                </div>
+
+                <div>
+                    <label for="witnesses" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Witnesses (if any)</label>
+                    <input type="text" id="witnesses" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" placeholder="e.g., John Smith, Jane Doe">
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:space-x-4">
+                    <div class="flex-1 mb-4 sm:mb-0">
+                        <label for="documentation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Attach Photos/Videos</label>
+                        <input type="file" id="documentation" multiple accept="image/*,video/*" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <div id="filePreview" class="flex flex-wrap items-center mt-2 space-x-2"></div>
+                    </div>
+
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Record a Memo</label>
+                        <div class="flex space-x-2 mt-1">
+                            <button id="recordAudioButton" class="flex-1 flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                                Audio
+                            </button>
+                            <button id="recordVideoButton" class="flex-1 flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                Video
+                            </button>
+                        </div>
+                        <!-- New video preview element for real-time and playback -->
+                        <video id="video-preview" autoplay playsinline class="w-full h-auto rounded-md mt-2"></video>
+                        <div id="mediaPreview" class="mt-2 text-xs text-gray-500 dark:text-gray-400"></div>
+                    </div>
+                </div>
+
+                <button onclick="logIncident()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Log Incident
                 </button>
-                <div class="flex space-x-2">
-                    <button onclick="downloadLog()" class="flex-1 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                        Download Log
-                    </button>
-                    <button onclick="emailLog()" class="flex-1 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        Send Log
-                    </button>
-                </div>
-                <div class="flex items-center">
-                    <label for="emailInput" class="sr-only">Email to send to</label>
-                    <input type="email" id="emailInput" placeholder="Enter recipient email" class="flex-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm sm:text-sm p-2">
-                </div>
             </div>
-            <div id="downloadInstructions" class="mt-8 p-4 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-200 hidden">
-                <p class="font-bold mb-2">Instructions for your Log:</p>
-                <p>You have successfully downloaded a **.json** file. This is a text-based file that contains all your logged incident data. To view it, you can open it with any text editor (like Notepad, TextEdit, or VS Code).</p>
-                <p class="mt-2">Your audio and video memos are now **embedded** in the log file, which will significantly increase its size. For other photos and files, you will need to save them separately on your computer.</p>
+
+            <hr class="my-8 border-gray-300 dark:border-gray-600">
+
+            <!-- Logged Incidents Display -->
+            <div class="space-y-6">
+                <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Incident Log</h2>
+                <div id="incidentLog" class="space-y-4">
+                    <p id="noIncidentsMessage" class="text-gray-500 dark:text-gray-400 text-center">No incidents logged yet.</p>
+                </div>
+                <div id="logButtons" class="mt-4 hidden space-y-2">
+                    <button onclick="clearLog()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Clear All Incidents
+                    </button>
+                    <div class="flex space-x-2">
+                        <button onclick="downloadLog()" class="flex-1 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Download Log
+                        </button>
+                        <button onclick="emailLog()" class="flex-1 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Send Log
+                        </button>
+                    </div>
+                    <div class="flex items-center">
+                        <label for="emailInput" class="sr-only">Email to send to</label>
+                        <input type="email" id="emailInput" placeholder="Enter recipient email" class="flex-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm sm:text-sm p-2">
+                    </div>
+                </div>
+                <div id="downloadInstructions" class="mt-8 p-4 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-200 hidden">
+                    <p class="font-bold mb-2">Instructions for your Log:</p>
+                    <p>You have successfully downloaded a **.json** file. This is a text-based file that contains all your logged incident data. To view it, you can open it with any text editor (like Notepad, TextEdit, or VS Code).</p>
+                    <p class="mt-2">Your audio and video memos are now **embedded** in the log file, which will significantly increase its size. For other photos and files, you will need to save them separately on your computer.</p>
+                </div>
             </div>
         </div>
         
         <!-- Version Number -->
-        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v2.1</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v3.0</p>
     </div>
 
     <!-- Modal for displaying message -->
@@ -210,7 +237,22 @@
         </div>
     </div>
     
-    <script>
+    <script type="module">
+        // Firebase SDK imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, query, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase configuration and initialization
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        let userId = null;
+        let unsubscribeFromFirestore = null;
+
         // Array to hold incident data
         let incidents = [];
         let mediaRecorder;
@@ -219,6 +261,14 @@
         let recordingStatus = false;
         
         // DOM elements
+        const authSection = document.getElementById('authSection');
+        const mainAppSection = document.getElementById('mainAppSection');
+        const emailAuth = document.getElementById('emailAuth');
+        const passwordAuth = document.getElementById('passwordAuth');
+        const signInButton = document.getElementById('signInButton');
+        const signUpButton = document.getElementById('signUpButton');
+        const logoutButton = document.getElementById('logoutButton');
+
         const incidentTypeEl = document.getElementById('incidentType');
         const incidentDateEl = document.getElementById('incidentDate');
         const incidentTimeEl = document.getElementById('incidentTime');
@@ -508,10 +558,14 @@
         }
 
         /**
-         * Logs a new incident from the form inputs.
-         * It validates the required fields and then adds the incident to the log.
+         * Logs a new incident from the form inputs to Firestore.
          */
         async function logIncident() {
+            if (!userId) {
+                showModal("Authentication Required", "Please sign in to log incidents.");
+                return;
+            }
+
             const type = incidentTypeEl.value;
             const date = incidentDateEl.value;
             const time = incidentTimeEl.value;
@@ -524,7 +578,6 @@
             }
 
             const incident = {
-                id: Date.now(),
                 type: type,
                 date: date,
                 time: time,
@@ -545,38 +598,47 @@
             // Handle recorded media file
             if (recordedMediaFile) {
                 const reader = new FileReader();
-                reader.onloadend = () => {
+                reader.onloadend = async () => {
                     incident.documentation.push({
                         name: recordedMediaFile.name,
                         note: recordedMediaFile.type.startsWith('audio') ? "Voice Memo" : "Video Memo",
                         data: reader.result,
                         type: recordedMediaFile.type
                     });
-                    incidents.push(incident);
-                    renderLog();
-                    clearForm();
+
+                    // Add to Firestore
+                    try {
+                        await addDoc(collection(db, `artifacts/${appId}/users/${userId}/incidents`), incident);
+                        clearForm();
+                    } catch (e) {
+                        showModal("Error", "Failed to log incident. Please try again.");
+                        console.error("Error adding document: ", e);
+                    }
                 };
                 reader.readAsDataURL(recordedMediaFile);
             } else {
-                incidents.push(incident);
-                renderLog();
-                clearForm();
+                // Add to Firestore
+                try {
+                    await addDoc(collection(db, `artifacts/${appId}/users/${userId}/incidents`), incident);
+                    clearForm();
+                } catch (e) {
+                    showModal("Error", "Failed to log incident. Please try again.");
+                    console.error("Error adding document: ", e);
+                }
             }
         }
 
         /**
-         * Renders the logged incidents to the UI.
+         * Renders the logged incidents to the UI from Firestore data.
          */
         function renderLog() {
-            // Sort incidents by date in descending order
-            incidents.sort((a, b) => new Date(b.date) - new Date(a.date));
-
             incidentLogEl.innerHTML = '';
             if (incidents.length === 0) {
                 noIncidentsMessageEl.classList.remove('hidden');
                 logButtonsEl.classList.add('hidden');
                 downloadInstructionsEl.classList.add('hidden');
             } else {
+                incidents.sort((a, b) => new Date(b.date) - new Date(a.date));
                 noIncidentsMessageEl.classList.add('hidden');
                 logButtonsEl.classList.remove('hidden');
                 downloadInstructionsEl.classList.remove('hidden');
@@ -625,7 +687,7 @@
                         <p class="text-gray-700 dark:text-gray-200 text-sm mb-2">${incident.description}</p>
                         ${incident.witnesses ? `<p class="text-gray-600 dark:text-gray-300 text-xs mt-2"><strong>Witnesses:</strong> ${incident.witnesses}</p>` : ''}
                         ${documentationHtml}
-                        <button onclick="deleteIncident(${incident.id})" class="mt-4 text-xs font-semibold text-red-600 hover:text-red-800">Delete</button>
+                        <button onclick="deleteIncident('${incident.id}')" class="mt-4 text-xs font-semibold text-red-600 hover:text-red-800">Delete</button>
                     `;
                     incidentLogEl.appendChild(incidentEl);
                 });
@@ -650,21 +712,35 @@
         }
 
         /**
-         * Deletes an incident from the log by its ID.
-         * @param {number} id The unique ID of the incident to delete.
+         * Deletes an incident from Firestore by its ID.
+         * @param {string} id The unique ID of the incident to delete.
          */
-        function deleteIncident(id) {
-            incidents = incidents.filter(incident => incident.id !== id);
-            renderLog();
+        async function deleteIncident(id) {
+            try {
+                await deleteDoc(doc(db, `artifacts/${appId}/users/${userId}/incidents`, id));
+            } catch (e) {
+                showModal("Error", "Failed to delete incident. Please try again.");
+                console.error("Error removing document: ", e);
+            }
         }
 
         /**
-         * Clears all incidents from the log.
+         * Clears all incidents from the log by deleting them from Firestore.
          */
-        function clearLog() {
-            incidents = [];
-            renderLog();
-            showModal("Log Cleared", "All incidents have been successfully cleared.");
+        async function clearLog() {
+            try {
+                const q = query(collection(db, `artifacts/${appId}/users/${userId}/incidents`));
+                const querySnapshot = await getDocs(q);
+                
+                querySnapshot.forEach(async (d) => {
+                    await deleteDoc(d.ref);
+                });
+
+                showModal("Log Cleared", "All incidents have been successfully cleared.");
+            } catch (e) {
+                showModal("Error", "Failed to clear the log. Please try again.");
+                console.error("Error clearing documents: ", e);
+            }
         }
 
         /**
@@ -719,11 +795,78 @@
             incidentTimeEl.value = `${hours}:${minutes}`;
         }
         
-        // Initial render and set date/time on DOMContentLoaded to ensure elements are ready
-        document.addEventListener('DOMContentLoaded', () => {
-            setInitialDateTime();
-            renderLog();
+        // --- Authentication Functions and Listeners ---
+
+        async function handleSignUp() {
+            const email = emailAuth.value;
+            const password = passwordAuth.value;
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                showModal("Sign Up Failed", error.message);
+                console.error("Sign Up Error:", error);
+            }
+        }
+
+        async function handleSignIn() {
+            const email = emailAuth.value;
+            const password = passwordAuth.value;
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                showModal("Sign In Failed", error.message);
+                console.error("Sign In Error:", error);
+            }
+        }
+
+        async function handleLogout() {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                showModal("Logout Failed", error.message);
+                console.error("Logout Error:", error);
+            }
+        }
+
+        // Authentication state listener
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userId = user.uid;
+                authSection.classList.add('hidden');
+                mainAppSection.classList.remove('hidden');
+                logoutButton.classList.remove('hidden');
+                setInitialDateTime();
+                
+                // Start listening to Firestore for user's incidents
+                if (unsubscribeFromFirestore) {
+                    unsubscribeFromFirestore();
+                }
+                const incidentsRef = collection(db, `artifacts/${appId}/users/${userId}/incidents`);
+                unsubscribeFromFirestore = onSnapshot(incidentsRef, (snapshot) => {
+                    incidents = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    renderLog();
+                }, (error) => {
+                    console.error("Firestore Error: ", error);
+                    showModal("Firestore Error", "Failed to load incidents. Please check your connection.");
+                });
+            } else {
+                userId = null;
+                authSection.classList.remove('hidden');
+                mainAppSection.classList.add('hidden');
+                logoutButton.classList.add('hidden');
+                incidents = [];
+                renderLog();
+                if (unsubscribeFromFirestore) {
+                    unsubscribeFromFirestore();
+                    unsubscribeFromFirestore = null;
+                }
+            }
         });
+        
+        // Event listeners for auth buttons
+        signInButton.addEventListener('click', handleSignIn);
+        signUpButton.addEventListener('click', handleSignUp);
+        logoutButton.addEventListener('click', handleLogout);
 
     </script>
 </body>
