@@ -160,9 +160,18 @@
                 <button onclick="clearLog()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                     Clear All Incidents
                 </button>
-                <button onclick="downloadLog()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                    Download Log
-                </button>
+                <div class="flex space-x-2">
+                    <button onclick="downloadLog()" class="flex-1 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        Download Log
+                    </button>
+                    <button onclick="emailLog()" class="flex-1 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Send Log
+                    </button>
+                </div>
+                <div class="flex items-center">
+                    <label for="emailInput" class="sr-only">Email to send to</label>
+                    <input type="email" id="emailInput" placeholder="Enter recipient email" class="flex-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm sm:text-sm p-2">
+                </div>
             </div>
             <div id="downloadInstructions" class="mt-8 p-4 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-200 hidden">
                 <p class="font-bold mb-2">Instructions for your Log:</p>
@@ -172,7 +181,7 @@
         </div>
         
         <!-- Version Number -->
-        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.7</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.8</p>
     </div>
 
     <!-- Modal for displaying message -->
@@ -220,6 +229,7 @@
         const recordAudioButton = document.getElementById('recordAudioButton');
         const recordVideoButton = document.getElementById('recordVideoButton');
         const mediaPreviewEl = document.getElementById('mediaPreview');
+        const emailInputEl = document.getElementById('emailInput');
 
         // Event listener for OK button on modal
         okBtn.onclick = () => {
@@ -526,7 +536,7 @@
                                 return `
                                     <li class="flex items-center text-xs text-gray-500 dark:text-gray-400">
                                         <span class="flex-1">${doc.note}: ${doc.name}</span>
-                                        <${mediaTag} controls src="${doc.data}" class="h-6 ml-2"></${mediaTag}>
+                                        <${mediaTag} controls src="${doc.data}" class="h-8 max-w-full ml-2"></${mediaTag}>
                                     </li>
                                 `;
                             } else {
@@ -611,6 +621,30 @@
             document.body.appendChild(downloadAnchorNode);
             downloadAnchorNode.click();
             downloadAnchorNode.remove();
+        }
+
+        /**
+         * Sends the log via email using the mailto: protocol.
+         */
+        function emailLog() {
+            const recipient = emailInputEl.value.trim();
+            if (!recipient) {
+                showModal("Input Required", "Please enter an email address to send the log.");
+                return;
+            }
+
+            const dataStr = JSON.stringify(incidents, null, 2);
+            const subject = "Incident Log Report";
+            const body = `Hello,\n\nPlease find the attached incident log below.\n\n${dataStr}\n\nThis message was generated using the Incident Tracker web app.`;
+            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // Check if the link is too long for mailto:
+            if (mailtoLink.length > 2000) {
+                showModal("File Too Large", "The log file is too large to send via email. Please use the 'Download Log' button instead.");
+                return;
+            }
+
+            window.location.href = mailtoLink;
         }
 
         /**
