@@ -181,7 +181,7 @@
         </div>
         
         <!-- Version Number -->
-        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.8</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.9</p>
     </div>
 
     <!-- Modal for displaying message -->
@@ -348,6 +348,36 @@
             return new Blob([view], { type: 'audio/wav' });
         }
 
+        /**
+         * Compresses a video blob.
+         * @param {Blob} videoBlob The video blob to compress.
+         * @returns {Promise<Blob>} A promise that resolves with the compressed video blob.
+         */
+        async function compressVideo(videoBlob) {
+            return new Promise((resolve, reject) => {
+                const video = document.createElement('video');
+                video.preload = 'metadata';
+                video.src = URL.createObjectURL(videoBlob);
+                video.onloadedmetadata = () => {
+                    URL.revokeObjectURL(video.src);
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    
+                    const MAX_WIDTH = 320;
+                    const scale = Math.min(MAX_WIDTH / video.videoWidth, 1);
+                    canvas.width = video.videoWidth * scale;
+                    canvas.height = video.videoHeight * scale;
+
+                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                    canvas.toBlob(blob => {
+                        resolve(blob);
+                    }, 'video/webm', 0.8); // 0.8 is the quality, 1.0 is highest
+                };
+                video.onerror = (e) => reject(e);
+            });
+        }
+
 
         /**
          * Toggles media recording on and off.
@@ -367,9 +397,9 @@
                     const stream = await navigator.mediaDevices.getUserMedia({
                         audio: true,
                         video: (type === 'video') ? {
-                            facingMode: 'user', // Use front camera
-                            width: { ideal: 480 },
-                            height: { ideal: 360 }
+                            facingMode: 'environment', // Use rear camera
+                            width: { ideal: 640 },
+                            height: { ideal: 480 }
                         } : false
                     });
 
@@ -381,20 +411,28 @@
                         recordedChunks.push(event.data);
                     };
 
-                    mediaRecorder.onstop = () => {
+                    mediaRecorder.onstop = async () => {
                         const mediaBlob = new Blob(recordedChunks, { type: mediaRecorder.mimeType });
                         if (type === 'audio') {
                             // Convert to WAV for better mobile compatibility
-                            convertAudioToWav(mediaBlob).then(wavBlob => {
+                            try {
+                                const wavBlob = await convertAudioToWav(mediaBlob);
                                 recordedMediaFile = new File([wavBlob], `voice_memo_${Date.now()}.wav`, { type: 'audio/wav' });
                                 showMediaPreview(recordedMediaFile);
-                            }).catch(err => {
+                            } catch (err) {
                                 showModal("Conversion Error", "Failed to convert audio file.");
                                 console.error(err);
-                            });
+                            }
                         } else {
-                            recordedMediaFile = new File([mediaBlob], `video_memo_${Date.now()}.webm`, { type: mediaBlob.type });
-                            showMediaPreview(recordedMediaFile);
+                            // Compress video before saving
+                            try {
+                                const compressedBlob = await compressVideo(mediaBlob);
+                                recordedMediaFile = new File([compressedBlob], `video_memo_${Date.now()}.webm`, { type: compressedBlob.type });
+                                showMediaPreview(recordedMediaFile);
+                            } catch (err) {
+                                showModal("Compression Error", "Failed to compress video file.");
+                                console.error(err);
+                            }
                         }
                         
                         stream.getTracks().forEach(track => track.stop());
