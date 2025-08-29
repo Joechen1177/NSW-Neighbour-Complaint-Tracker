@@ -69,7 +69,7 @@
         <!-- Header with Dark Mode Toggle -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-8">
             <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-2 sm:mb-0 text-center sm:text-left">Incident Tracker</h1>
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 mt-4 sm:mt-0">
                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Dark Mode</span>
                 <label class="toggle-switch">
                     <input type="checkbox" id="darkModeToggle">
@@ -154,12 +154,12 @@
             <div id="downloadInstructions" class="mt-8 p-4 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-200 hidden">
                 <p class="font-bold mb-2">Instructions for your Log:</p>
                 <p>You have successfully downloaded a **.json** file. This is a text-based file that contains all your logged incident data. To view it, you can open it with any text editor (like Notepad, TextEdit, or VS Code).</p>
-                <p class="mt-2">For your attached photos and files, you will need to save them separately on your computer. Your log will reference their filenames, but it will not contain the actual file content to keep the log small and fast.</p>
+                <p class="mt-2">Your voice memos are now **embedded** in the log file, which will increase its size. For other photos and files, you will need to save them separately on your computer.</p>
             </div>
         </div>
         
         <!-- Version Number -->
-        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.5</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.6</p>
     </div>
 
     <!-- Modal for displaying message -->
@@ -194,4 +194,323 @@
         const incidentDescriptionEl = document.getElementById('incidentDescription');
         const witnessesEl = document.getElementById('witnesses');
         const documentationEl = document.getElementById('documentation');
-        const filePreviewEl = document.getElementById('filePreview
+        const filePreviewEl = document.getElementById('filePreview');
+        const incidentLogEl = document.getElementById('incidentLog');
+        const noIncidentsMessageEl = document.getElementById('noIncidentsMessage');
+        const logButtonsEl = document.getElementById('logButtons');
+        const messageModal = document.getElementById('messageModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const okBtn = document.getElementById('okBtn');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const downloadInstructionsEl = document.getElementById('downloadInstructions');
+        const recordButton = document.getElementById('recordButton');
+        const audioPreviewEl = document.getElementById('audioPreview');
+
+        // Event listener for OK button on modal
+        okBtn.onclick = () => {
+            messageModal.classList.add('hidden');
+        };
+
+        // Dark mode functionality
+        const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark');
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Event listener for file input to show previews
+        documentationEl.addEventListener('change', () => {
+            filePreviewEl.innerHTML = '';
+            for (const file of documentationEl.files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'image-preview';
+                        filePreviewEl.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type.startsWith('video/')) {
+                    const span = document.createElement('span');
+                    span.textContent = `📹 ${file.name}`;
+                    span.className = 'text-xs text-gray-500 dark:text-gray-400 p-1 rounded-md bg-gray-200 dark:bg-gray-600';
+                    filePreviewEl.appendChild(span);
+                } else {
+                    const span = document.createElement('span');
+                    span.textContent = `📁 ${file.name}`;
+                    span.className = 'text-xs text-gray-500 dark:text-gray-400 p-1 rounded-md bg-gray-200 dark:bg-gray-600';
+                    filePreviewEl.appendChild(span);
+                }
+            }
+        });
+
+        // Function to show the custom message modal
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            messageModal.classList.remove('hidden');
+        }
+
+        /**
+         * Toggles the audio recording on and off.
+         */
+        async function toggleRecording() {
+            if (recordingStatus) {
+                // Stop recording
+                mediaRecorder.stop();
+                recordingStatus = false;
+                recordButton.textContent = "Start Recording";
+                recordButton.classList.replace('bg-red-600', 'bg-pink-600');
+            } else {
+                // Start recording
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    recordedChunks = [];
+                    recordedAudioFile = null;
+
+                    mediaRecorder.ondataavailable = (event) => {
+                        recordedChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+                        recordedAudioFile = new File([audioBlob], `voice_memo_${Date.now()}.webm`, { type: 'audio/webm' });
+                        showAudioPreview(recordedAudioFile);
+                    };
+
+                    mediaRecorder.start();
+                    recordingStatus = true;
+                    recordButton.textContent = "Stop Recording";
+                    recordButton.classList.replace('bg-pink-600', 'bg-red-600');
+                    audioPreviewEl.innerHTML = `<span class="text-pink-600">Recording...</span>`;
+
+                } catch (err) {
+                    showModal("Permission Error", "Could not access the microphone. Please grant permission.");
+                    console.error('Error accessing microphone:', err);
+                }
+            }
+        }
+        
+        // Add click listener for record button
+        recordButton.addEventListener('click', toggleRecording);
+
+        /**
+         * Displays a preview for the recorded audio file.
+         * @param {File} audioFile The recorded audio file.
+         */
+        function showAudioPreview(audioFile) {
+            const audioUrl = URL.createObjectURL(audioFile);
+            audioPreviewEl.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs text-gray-500 dark:text-gray-400">🎤 ${audioFile.name}</span>
+                    <audio controls src="${audioUrl}" class="h-6"></audio>
+                </div>
+            `;
+        }
+
+        /**
+         * Logs a new incident from the form inputs.
+         * It validates the required fields and then adds the incident to the log.
+         */
+        async function logIncident() {
+            const type = incidentTypeEl.value;
+            const date = incidentDateEl.value;
+            const time = incidentTimeEl.value;
+            const description = incidentDescriptionEl.value.trim();
+            const witnesses = witnessesEl.value.trim();
+            
+            if (!date || !description) {
+                showModal("Validation Error", "Please enter a date and a description for the incident.");
+                return;
+            }
+
+            const incident = {
+                id: Date.now(),
+                type: type,
+                date: date,
+                time: time,
+                description: description,
+                witnesses: witnesses,
+                documentation: []
+            };
+
+            // Handle attached files (photos/videos)
+            const fileList = Array.from(documentationEl.files);
+            for (const file of fileList) {
+                incident.documentation.push({
+                    name: file.name,
+                    note: "File attached. Please save the original file separately."
+                });
+            }
+            
+            // Handle recorded audio file
+            if (recordedAudioFile) {
+                const reader = new FileReader();
+                reader.readAsDataURL(recordedAudioFile);
+                reader.onloadend = () => {
+                    incident.documentation.push({
+                        name: recordedAudioFile.name,
+                        note: "Voice Memo",
+                        data: reader.result
+                    });
+                    incidents.push(incident);
+                    renderLog();
+                    clearForm();
+                };
+            } else {
+                incidents.push(incident);
+                renderLog();
+                clearForm();
+            }
+        }
+
+        /**
+         * Renders the logged incidents to the UI.
+         */
+        function renderLog() {
+            // Sort incidents by date in descending order
+            incidents.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            incidentLogEl.innerHTML = '';
+            if (incidents.length === 0) {
+                noIncidentsMessageEl.classList.remove('hidden');
+                logButtonsEl.classList.add('hidden');
+                downloadInstructionsEl.classList.add('hidden');
+            } else {
+                noIncidentsMessageEl.classList.add('hidden');
+                logButtonsEl.classList.remove('hidden');
+                downloadInstructionsEl.classList.remove('hidden');
+                incidents.forEach(incident => {
+                    const incidentEl = document.createElement('div');
+                    incidentEl.className = 'bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-inner';
+                    
+                    let documentationHtml = '';
+                    if (incident.documentation.length > 0) {
+                        const docsHtml = incident.documentation.map(doc => {
+                            if (doc.data) {
+                                // It's an embedded voice memo
+                                return `
+                                    <li class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                                        <span class="flex-1">${doc.note}: ${doc.name}</span>
+                                        <audio controls src="${doc.data}" class="h-6 ml-2"></audio>
+                                    </li>
+                                `;
+                            } else {
+                                // It's a file name reference
+                                return `
+                                    <li class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                                        <span>${doc.name}</span>
+                                        <span class="text-gray-400 text-xs ml-2">(${doc.note})</span>
+                                    </li>
+                                `;
+                            }
+                        }).join('');
+
+                        documentationHtml = `
+                            <div class="mt-4">
+                                <p class="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">Attached Files:</p>
+                                <ul class="list-disc list-inside space-y-1">
+                                    ${docsHtml}
+                                </ul>
+                            </div>
+                        `;
+                    }
+                    
+                    incidentEl.innerHTML = `
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-gray-800 dark:text-gray-100 capitalize">${incident.type.replace('-', ' ')}</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">${incident.date} at ${incident.time || 'N/A'}</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-200 text-sm mb-2">${incident.description}</p>
+                        ${incident.witnesses ? `<p class="text-gray-600 dark:text-gray-300 text-xs mt-2"><strong>Witnesses:</strong> ${incident.witnesses}</p>` : ''}
+                        ${documentationHtml}
+                        <button onclick="deleteIncident(${incident.id})" class="mt-4 text-xs font-semibold text-red-600 hover:text-red-800">Delete</button>
+                    `;
+                    incidentLogEl.appendChild(incidentEl);
+                });
+            }
+        }
+
+        /**
+         * Clears the incident log form inputs.
+         */
+        function clearForm() {
+            incidentTypeEl.value = 'harassment';
+            incidentDateEl.value = '';
+            incidentTimeEl.value = '';
+            incidentDescriptionEl.value = '';
+            witnessesEl.value = '';
+            documentationEl.value = '';
+            filePreviewEl.innerHTML = '';
+            audioPreviewEl.innerHTML = '';
+            recordedAudioFile = null;
+            // Pre-populate date and time after clearing
+            setInitialDateTime();
+        }
+
+        /**
+         * Deletes an incident from the log by its ID.
+         * @param {number} id The unique ID of the incident to delete.
+         */
+        function deleteIncident(id) {
+            incidents = incidents.filter(incident => incident.id !== id);
+            renderLog();
+        }
+
+        /**
+         * Clears all incidents from the log.
+         */
+        function clearLog() {
+            incidents = [];
+            renderLog();
+            showModal("Log Cleared", "All incidents have been successfully cleared.");
+        }
+
+        /**
+         * Downloads the incident log as a JSON file.
+         */
+        function downloadLog() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(incidents, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "incident_log.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+
+        /**
+         * Sets the initial date and time fields to the current moment.
+         */
+        function setInitialDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            incidentDateEl.value = `${year}-${month}-${day}`;
+            incidentTimeEl.value = `${hours}:${minutes}`;
+        }
+        
+        // Initial render and set date/time on DOMContentLoaded to ensure elements are ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setInitialDateTime();
+            renderLog();
+        });
+
+    </script>
+</body>
+</html>
