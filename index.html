@@ -67,6 +67,13 @@
         .form-group label {
             text-align: left;
         }
+        /* Style for the video preview element */
+        #video-preview {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen p-4 sm:p-8">
@@ -139,6 +146,8 @@
                             Video
                         </button>
                     </div>
+                    <!-- New video preview element -->
+                    <video id="video-preview" autoplay playsinline class="w-full h-auto rounded-md mt-2"></video>
                     <div id="mediaPreview" class="mt-2 text-xs text-gray-500 dark:text-gray-400"></div>
                 </div>
             </div>
@@ -181,7 +190,7 @@
         </div>
         
         <!-- Version Number -->
-        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v1.9</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center mt-8">v2.0</p>
     </div>
 
     <!-- Modal for displaying message -->
@@ -230,6 +239,7 @@
         const recordVideoButton = document.getElementById('recordVideoButton');
         const mediaPreviewEl = document.getElementById('mediaPreview');
         const emailInputEl = document.getElementById('emailInput');
+        const videoPreviewEl = document.getElementById('video-preview');
 
         // Event listener for OK button on modal
         okBtn.onclick = () => {
@@ -403,6 +413,12 @@
                         } : false
                     });
 
+                    // Start video preview
+                    if (type === 'video') {
+                        videoPreviewEl.srcObject = stream;
+                        videoPreviewEl.style.display = 'block';
+                    }
+
                     mediaRecorder = new MediaRecorder(stream, { mimeType: (type === 'video') ? 'video/webm;codecs=vp8,opus' : 'audio/webm' });
                     recordedChunks = [];
                     recordedMediaFile = null;
@@ -412,9 +428,15 @@
                     };
 
                     mediaRecorder.onstop = async () => {
+                        // Stop video preview and release camera
+                        if (type === 'video') {
+                            videoPreviewEl.srcObject = null;
+                            videoPreviewEl.style.display = 'none';
+                        }
+                        stream.getTracks().forEach(track => track.stop());
+
                         const mediaBlob = new Blob(recordedChunks, { type: mediaRecorder.mimeType });
                         if (type === 'audio') {
-                            // Convert to WAV for better mobile compatibility
                             try {
                                 const wavBlob = await convertAudioToWav(mediaBlob);
                                 recordedMediaFile = new File([wavBlob], `voice_memo_${Date.now()}.wav`, { type: 'audio/wav' });
@@ -424,7 +446,6 @@
                                 console.error(err);
                             }
                         } else {
-                            // Compress video before saving
                             try {
                                 const compressedBlob = await compressVideo(mediaBlob);
                                 recordedMediaFile = new File([compressedBlob], `video_memo_${Date.now()}.webm`, { type: compressedBlob.type });
@@ -434,8 +455,6 @@
                                 console.error(err);
                             }
                         }
-                        
-                        stream.getTracks().forEach(track => track.stop());
                     };
 
                     mediaRecorder.start();
@@ -574,7 +593,7 @@
                                 return `
                                     <li class="flex items-center text-xs text-gray-500 dark:text-gray-400">
                                         <span class="flex-1">${doc.note}: ${doc.name}</span>
-                                        <${mediaTag} controls src="${doc.data}" class="h-8 max-w-full ml-2"></${mediaTag}>
+                                        <${mediaTag} controls src="${doc.data}" class="h-8 max-w-full"></${mediaTag}>
                                     </li>
                                 `;
                             } else {
